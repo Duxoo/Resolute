@@ -1,0 +1,12 @@
+<tr class="js-dependent" data-id="{$product.type|escape}_{$product.entity_id|escape}">
+    <td><p>{$product.type_name|escape}</p></td>
+    <td>{$product.name|escape}</td>
+    <td>
+        <input name="data[{$product.type|escape}_{$product.entity_id|escape}]" min="1" type="number" value="{$product.quantity|escape}">
+    </td>
+    <td>
+        <div class="js-delete-dependent rc-pointer rc-float-right rc-fill-dark rc-icon20" data-type="entity">
+            {include $app_path|cat:'/img/svg/trash.svg'}
+        </div>
+    </td>
+</tr>

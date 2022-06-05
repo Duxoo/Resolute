@@ -1,0 +1,91 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($product.product.name)}{$product.product.name|escape}{else}Новый товар{/if}
+    </div>
+    <a href="?module=product" class="rc-float-right">К списку товаров</a>
+</div>
+<div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-p5">
+        <ul class="rc-flex">
+            {foreach $settings as $settings_array}
+                <li class="js-tab rc-tab rc-pointer" data-tab="{$settings_array.type|escape}">{$settings_array.name|escape}</li>
+            {/foreach}
+        </ul>
+    </div>
+</div>
+<div class="rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white">
+    {foreach $settings as $settings_array}
+        <div class="js-tab-content" data-tab="{$settings_array.type|escape}">
+            {if is_array($settings_array.fields)}
+                <form class="js-form" action="?module=settings&action=save" data-type="{$settings_array.type|escape}">
+                    <input type="hidden" name="type" value="{$settings_array.type|escape}">
+                    {foreach $settings_array.fields as $code => $setting}
+                        <div class="rc-field">
+                            <div class="rc-name"><p>{$setting.name|escape}</p></div>
+                            <div class="rc-value{if $setting.required} rc-required{/if}">
+                                {if (empty($settings_values[$code]))}
+                                    {if empty($setting.default)}
+                                        {$current_value = ''}
+                                    {else}
+                                        {$current_value = $setting.default}
+                                    {/if}
+                                {else}
+                                    {$current_value = $settings_values[$code]}
+                                {/if}
+                                {if $setting.field.tag == 'input'}
+                                    <input id="{$settings_array.type|escape}_{$code|escape}"
+                                           type="{if isset($setting.field.type)}{$setting.field.type|escape}{else}text{/if}"
+                                           name="settings[{$code|escape}]"
+                                            {if empty($setting.field.type) || $setting.field.type == 'text' || $setting.field.type == 'number'}
+                                                value="{$current_value|escape}"
+                                            {elseif $setting.field.type == 'checkbox'}
+                                                {if $current_value} checked{/if}
+                                            {/if}
+                                    >
+                                    {if $setting.field.type == 'checkbox'}
+                                        <label for="{$settings_array.type|escape}_{$code|escape}">
+                                            {include $app_path|cat:'/templates/check.html'}
+                                        </label>
+                                    {/if}
+                                {elseif $setting.field.tag == 'textarea'}
+                                    <textarea name="settings[{$code|escape}]">{$current_value|escape}</textarea>
+                                {elseif $setting.field.tag == 'select'}
+                                    <select name="settings[{$code|escape}]"{if $setting.field.js == 'select-two'}
+                                        class="js-select-two" data-action="{$setting.field.action|escape}"{/if}>
+                                        {if isset($setting.field.options)}
+                                            {foreach $setting.field.options as $val => $option}
+                                                <option value="{$val|escape}"{if $current_value == $val} selected{/if}>{$option|escape}</option>
+                                            {/foreach}
+                                        {else}
+                                            {if $setting.field.js == 'select-two' && isset($setting.field.object_type) && !empty($current_value)}
+                                                {$val_name = rcHelper::getName($setting.field.object_type, $current_value)}
+                                                {if !$val_name.error}
+                                                    <option value="{$current_value|escape}" selected>{$val_name.name|escape}</option>
+                                                {/if}
+                                            {/if}
+                                        {/if}
+                                    </select>
+                                {/if}
+                                {if isset($setting.after_input)}
+                                    {$setting.after_input|escape}
+                                {/if}
+                                {if isset($setting.hint)}
+                                    <br>
+                                    <br>
+                                    <div class="rc-hint">{$setting.hint|escape}</div>
+                                {/if}
+                            </div>
+                        </div>
+                    {/foreach}
+                    <div class="rc-mt10">
+                        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Сохранить">
+                        <span class="js-form-message"></span>
+                        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+                    </div>
+                </form>
+            {else}
+                {$settings_array.fields}
+            {/if}
+        </div>
+    {/foreach}
+</div>

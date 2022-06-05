@@ -1,0 +1,14 @@
+<form class="rc-form js-form-ajax" action="?module=shop&action=MotivationSave">
+    <input name="data[id]" type="hidden" {if isset($shop.motivation.id)}value="{$shop.motivation.id}"{/if}>
+    <input name="data[shop_id]" type="hidden" value="{$shop.id}">
+    <div class="fields">
+        <div class="field">
+            <div class="name">Заглушка</div>
+            <div class="value">
+                <input type="text" name="data[name]" value="{if isset($shop.motivation.name)}{$shop.motivation.name|escape}{/if}"
+                       placeholder="Введите название">
+            </div>
+        </div>
+
+    </div>
+</form>

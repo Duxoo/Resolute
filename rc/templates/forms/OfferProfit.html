@@ -1,0 +1,59 @@
+<form class="js-form js-required-parent rc-form" action="?module=offer&action=save" data-method="profit">
+    <input name="data[id]" type="hidden" value="{$offer.info.id|escape}">
+    <div class="js-tab-block rc-m10" data-tab-type="only-change">
+        {foreach $offer_profit as $key => $profit}
+            <input type="radio" id="profit_{$key|escape}" name="data[offer][profit_type]"
+                   value="{$key|escape}"{if $key == $offer.info.profit_type} checked{/if}>
+            <label for="profit_{$key|escape}" class="js-tab js-required-control rc-mr16" data-tab="{$profit.code|escape}">
+                {$profit.name|escape}
+            </label>
+        {/foreach}
+    </div>
+    {foreach $offer_profit as $key => $profit}
+        <div class="js-tab-content js-required-content"{if $offer.info.profit_type != $key} style=" display: none"{/if} data-tab="{$profit.code|escape}">
+            {if $profit.code == "all"}
+                <div class="rc-field">
+                    <div class="rc-name">Скидка на весь заказ</div>
+                    <div class="rc-value"><input type="text" name="data[offer][discount]"{if isset($offer.info.discount)} value="{$offer.info.discount|escape}"{/if}> %</div>
+                </div>
+            {elseif $profit.code == "certain"}
+                <div class="rc-data-tables">
+                    <table class="js-parent" data-id="{if isset($offer.info.id)}{$offer.info.id|escape}{/if}">
+                        <thead>
+                        <tr>
+                            <th>Тип</th>
+                            <th>Наименование</th>
+                            <th>Количество</th>
+                            <th>Тип скидки</th>
+                            <th>Значение скидки</th>
+                            <th>
+                                <div class="js-add-popup rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="profitEntity">
+                                    {include $app_path|cat:'/img/svg/plus.svg'}
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {if $offer.profit_items}
+                            {$i = 0}
+                            {foreach $offer.profit_items as $key => $items}
+                                {foreach $items as $key2 => $item}
+                                    {include $app_path|cat:'/templates/add/OfferProfitItems.html'}
+                                    {$i = $i + 1}
+                                {/foreach}
+                            {/foreach}
+                        {else}
+                            {include $app_path|cat:'/templates/add/OfferProfitItems.html'}
+                        {/if}
+                        </tbody>
+                    </table>
+                </div>
+            {/if}
+        </div>
+    {/foreach}
+    <div class="rc-mt10">
+        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Сохранить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

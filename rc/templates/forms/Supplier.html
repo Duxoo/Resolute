@@ -1,0 +1,11 @@
+<form class="rc-form js-form" action="?module=supplier&action=save">
+    {if isset($supplier.id)}<input name="id" type="hidden" value="{$supplier.id}">{/if}
+    <div class="rc-fields">
+        {include $app_path|cat:'/templates/fields.html' current_row=$supplier row_name=''}
+        <div class="rc-field buttons">
+            <input type="submit" value="Сохранить" class="rc-background">
+            <span class="js-form-message"></span>
+            <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+        </div>
+    </div>
+</form>

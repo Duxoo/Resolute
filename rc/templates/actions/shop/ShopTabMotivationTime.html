@@ -1,0 +1,51 @@
+<form class="rc-form js-form-ajax" action="?module=shop&action=MotivationSave">
+    <input name="data[id]" type="hidden" {if isset($shop.motivation.id)}value="{$shop.motivation.id}"{/if}>
+    <input name="data[shop_id]" type="hidden" value="{$shop.id}">
+    <div class="fields">
+        <div class="field">
+            <div class="name">Условие действия</div>
+            <div class="value">
+                {foreach $motivation_timing_type as $id => $timing_type}
+                    <input id="timing_type_{$id}" class="js-motivation-time-change" type="radio" value="{$id}" name="data[timing_type]"
+                           {if isset($shop.motivation.timing_type) && $id == $shop.motivation.timing_type}checked{/if}
+                           data-code="{$timing_type.code|escape}">
+                    <label for="timing_type_{$id}">
+                        {$timing_type.title|escape}
+                    </label>
+                    {if $timing_type.code == "weekdays"}
+                        <div class="js-motivation-time-content rc-data-tables" {if $shop.motivation.timing_type != 3}style="display: none"{/if} data-tab-code="{$timing_type.code|escape}">
+                            <table class="js-parent">
+                                <thead>
+                                <tr>
+                                    <th>Активно</th>
+                                    <th>День недели</th>
+                                    <th>Начало периода</th>
+                                    <th>Окончание периода</th>
+                                </tr>
+                                </thead>
+                                <tbody class="js-parent-content">
+                                {foreach $timing_type.values as $key => $value}
+                                    {$checked = false}
+                                    {foreach $shop.motivation.weekdays as $day_id => $weekday}
+                                        {if $day_id == $key}
+                                            {$checked = true}
+                                            {$start = $weekday.start_time}
+                                            {$end = $weekday.end_time}
+                                            {break}
+                                        {/if}
+                                    {/foreach}
+                                    {include $app_path|cat:'/templates/add/MotivationWeekdays.html'}
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    {elseif $timing_type.code == "certain"}
+
+                    {elseif $timing_type.code == "periods"}
+
+                    {/if}
+                {/foreach}
+            </div>
+        </div>
+    </div>
+</form>

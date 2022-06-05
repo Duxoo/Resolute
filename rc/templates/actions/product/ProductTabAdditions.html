@@ -1,0 +1,23 @@
+<div class="rc-data-tables rc-pb20">
+    <table class="js-data-table js-parent" data-type="addition">
+        <thead>
+        <tr>
+            <th>Дополнение</th>
+            <th>Вкл.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $products as $p}
+            <tr data-id="{$p.id|escape}" class="js-row">
+                <td>{$p.name|escape}</td>
+                <td>
+                    <input type="checkbox" class="js-checkbox" id="addition_{$p.id|escape}"{if isset($additions[$p.id]) && $additions[$p.id].status != 0} checked{/if}>
+                    <label for="addition_{$p.id|escape}">
+                        {include $app_path|cat:'/templates/check.html'}
+                    </label>
+                </td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>

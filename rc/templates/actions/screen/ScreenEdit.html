@@ -1,0 +1,19 @@
+<script src="{$wa_app_static_url}js/screen.js" type="text/javascript"></script>
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($screen.info.name)}{$screen.info.name|escape}{else}Новое меню{/if}
+    </div>
+    <a href="?module=screen" class="rc-float-right">К списку меню</a>
+</div>
+<div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-p5 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-p5">
+        <ul class="rc-flex">
+            <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+            <li class="js-tab rc-tab rc-pointer" data-tab="shop">Точки</li>
+        </ul>
+    </div>
+</div>
+<div class="js-content rc-content-block rc-float-left rc-mb20 rc-tb10-dp20 rc-background-white" data-type="screen" data-id="{if isset($screen.info.id)}{$screen.info.id|escape}{else}Новое меню{/if}">
+    <div class="js-tab-content" data-tab="main"></div>
+    <div class="js-tab-content" data-tab="shop"></div>
+</div>

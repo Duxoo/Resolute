@@ -1,0 +1,30 @@
+<div class="rc-mb10 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        Выбор дней проведения инвентаризации для точки "{$shop.name|escape}"
+    </div>
+</div>
+<div class="rc-data-tables rc-pb20">
+    <form class="js-form rc-form" action="?module=shop&action=saveInventoryDates">
+        <input type="hidden" name="id" value="{$shop.id|escape}">
+        <table class="js-parent">
+            <thead class="rc-background rc-bold rc-left">
+            <tr>
+                <th>Тип</th>
+                <th>Месяц</th>
+                <th>День</th>
+                <th>
+                    <div class="js-add rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="inventoryDate">
+                        {include $app_path|cat:'/img/svg/plus.svg'}
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody class="js-parent-content" data-type="inventoryDate"></tbody>
+        </table>
+        <div class="rc-field buttons">
+            <input type="submit" value="Сохранить" class="rc-p10 rc-pointer rc-background">
+            <span class="js-form-message"></span>
+            <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+        </div>
+    </form>
+</div>

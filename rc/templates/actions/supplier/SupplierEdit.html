@@ -1,0 +1,30 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($supplier.name)}
+            Поставщик "{$supplier.name|escape}"
+        {else}
+            Новый поставщик
+        {/if}
+    </div>
+    <a href="?module=supplier" class="rc-float-right">К списку поставщиков</a>
+</div>
+{if isset ($supplier.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="shop">Точки</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="ingredients">Ингредиенты</li>
+            </ul>
+        </div>
+    </div>
+    <div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white" data-type="supplier" data-id="{$supplier.id|escape}">
+        <div class="js-tab-content" data-tab="main"></div>
+        <div class="js-tab-content" data-tab="shop"></div>
+        <div class="js-tab-content" data-tab="ingredients"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/supplier/SupplierTabMain.html"}
+    </div>
+{/if}

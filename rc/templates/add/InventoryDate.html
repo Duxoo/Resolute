@@ -1,0 +1,37 @@
+{if empty($config.inventory_type)}
+    {$config.inventory_type = rcHelper::getConfigOption('inventory_type')}
+{/if}
+<tr class="js-dependent">
+    <td class="rc-required">
+        {if isset($data.id)}<input type="hidden" name="data[{$key}][id]" value="{$data.id|escape}">{/if}
+        <select name="data[{$key}][type]">
+            {foreach $config.inventory_type as $type_id => $type_data}
+                <option value="{$type_id|escape}">{$type_data.name|escape}</option>
+            {/foreach}
+        </select>
+    </td>
+    <td class="rc-required">
+        <select name="data[{$key}][month]">
+            <option value="1">Январь</option>
+            <option value="2">Февраль</option>
+            <option value="3">Март</option>
+            <option value="4">Апрель</option>
+            <option value="5">Май</option>
+            <option value="6">Июнь</option>
+            <option value="7">Июль</option>
+            <option value="8">Август</option>
+            <option value="9">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+        </select>
+    </td>
+    <td class="rc-required">
+        <input type="number" min="1" max="12" name="data[{$key}][month]" value="{if isset($date.month)}{$date.month|escape}{/if}">
+    </td>
+    <td>
+        <div class="js-delete-dependent rc-pointer rc-float-right rc-fill-dark rc-icon20" data-type="inventoryDate">
+            {include $app_path|cat:'/img/svg/trash.svg'}
+        </div>
+    </td>
+</tr>

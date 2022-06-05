@@ -1,0 +1,54 @@
+<form class="js-form rc-form rc-short-form" action="?module=supply&action=saveItem">
+    <input name="id" type="hidden" value="{$supply_item.id|escape}">
+    <div class="rc-fields">
+        <div class="rc-field">
+            <div class="rc-name">Поступило</div>
+            <div class="rc-value">
+                <input type="number" name="data[start_count]" value="{$supply_item.start_count*1}"
+                min="{$supplier_ingredient.min_purchase|escape}"
+                step="{if $supplier_ingredient.discrete}{$supplier_ingredient.min_purchase|escape}{else}0.0001{/if}">
+                <span>(В наличии {$supply_item.count*1})</span>
+                <select>
+                    {if isset($config.unit[$config.dimension[$ingredient.dimension].code])}
+                        {foreach $config.unit[$config.dimension[$ingredient.dimension].code] as  $u_id => $unit_data}
+                            <option value="{$u_id|escape}"{if $u_id == $supply_item.unit} selected{/if}>{$unit_data.name|escape}</option>
+                        {/foreach}
+                    {/if}
+                </select>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Изменение</div>
+            <div class="rc-value">
+                <input type="radio" id="off" name="data[count_change_type]" value="1" checked>
+                <label for="off" class="rc-mr16">Списать</label>
+                <input type="radio" id="on" name="data[count_change_type]" value="2">
+                <label for="on" class="rc-mr16">Начислить</label>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Значение изменения</div>
+            <div class="rc-value">
+                <input type="number" id="off" name="data[count_change]" value="0">
+                <br>
+                <br>
+                <div class="rc-hint">Только положительное число</div>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Комментарий</div>
+            <div class="rc-value">
+                <textarea name="data[description]" style="height: 100px"></textarea>
+                <br>
+                <br>
+                <div class="rc-hint">Рекомендуется заполнить при изменении наличия в поставке</div>
+            </div>
+        </div>
+    </div>
+    <div class="rc-p10">
+        <div class="rc-float-right rc-button rc-background-hover rc-pointer b-close">Отмена</div>
+        <input type="submit" value="Сохранить" class="rc-p10 rc-pointer rc-background">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($set.name)}{$set.name|escape}{else}Новый список{/if}
+    </div>
+    <a href="?module=set" class="rc-float-right">К списку списков</a>
+</div>
+{if isset ($set.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="products">Товары</li>
+            </ul>
+        </div>
+    </div>
+    <div class="js-content js-tab-content" data-tab="main" data-type="set" data-id="{$set.id|escape}"></div>
+    <div class="js-content js-tab-content" data-tab="products" data-type="set" data-id="{$set.id|escape}"></div>
+{else}
+    <div class="rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:'/templates/forms/Set.html'}
+    </div>
+{/if}

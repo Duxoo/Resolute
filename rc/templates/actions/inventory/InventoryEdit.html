@@ -1,0 +1,28 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($inventory.id)}
+            Инвентаризация "#{$inventory.id|escape}"
+        {else}
+            Новая инвентаризация
+        {/if}
+    </div>
+    <a href="?module=inventory" class="rc-float-right">К списку инвентаризаций</a>
+</div>
+{if isset ($inventory.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="items">Игредиенты</li>
+            </ul>
+        </div>
+    </div>
+    <div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white" data-type="inventory" data-id="{$inventory.id|escape}">
+        <div class="js-tab-content" data-tab="main"></div>
+        <div class="js-tab-content" data-tab="items"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/inventory/InventoryTabMain.html"}
+    </div>
+{/if}

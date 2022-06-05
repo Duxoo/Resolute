@@ -1,0 +1,35 @@
+<tr class="js-dependent" data-id="{if isset($item.type)}{$item.type|escape}_{$item.entity_id|escape}{/if}">
+    <td hidden>
+        <input type="hidden" name="data[offer][profit][items][{$i}][offer_id]" value="{$offer.info.id}">
+    </td>
+    <td hidden>
+        <input type="hidden" name="data[offer][profit][items][{$i}][entity_id]" value="{$item.id}">
+    </td>
+    <td hidden>
+        <input type="hidden" name="data[offer][profit][items][{$i}][type]" value="{$item.type}">
+    </td>
+    <td>
+        {$offer_condition_type[$item.type].name|escape}</td>
+    <td>
+        {$item.name|escape}
+    </td>
+    <td>
+        {$item.quantity|escape} шт.
+    </td>
+    <td>
+        {foreach $offer_profit_type as $id => $type}
+            {if $id == $item.profit_type}
+                {$type|escape}
+                {break}
+            {/if}
+        {/foreach}
+    </td>
+    <td>
+        {$item.profit_value}
+    </td>
+    <td>
+        <div class="js-delete-dependent rc-float-right rc-pointer rc-fill-dark rc-icon20" data-type="profitEntity">
+            {include $app_path|cat:'/img/svg/trash.svg'}
+        </div>
+    </td>
+</tr>

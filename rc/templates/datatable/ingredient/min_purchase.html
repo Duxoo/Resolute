@@ -1,0 +1,11 @@
+<div class="js-row rc-tr-inline-inputs" data-id="{$id|escape}">
+    <input type="number" name="min_purchase" class="js-row-field" min="0" value="{if !empty($min_purchase)}{$min_purchase|escape}{/if}">
+    <select class="js-row-field" name="unit">
+        <option value="-1">---</option>
+        {if isset($config.unit[$config.dimension[$dimension].code])}
+            {foreach $config.unit[$config.dimension[$dimension].code] as  $u_id => $unit_data}
+                <option value="{$u_id|escape}"{if $unit == $u_id} selected{/if}>{$unit_data.name|escape}</option>
+            {/foreach}
+        {/if}
+    </select>
+</div>

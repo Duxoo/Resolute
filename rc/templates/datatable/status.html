@@ -1,0 +1,4 @@
+<div class="js-row" data-id="{$id|escape}">
+    <input type="checkbox" class="js-row-field" name="status" value="1" id="status_{$id|escape}"{if $status} checked{/if}>
+    <label for="status_{$id|escape}">{include $app_path|cat:'/templates/check.html'}</label>
+</div>

@@ -1,0 +1,17 @@
+<tr class="js-dependent"{if isset($period.id)} data-id="{$period.id|escape}"{/if}>
+    <td class="rc-required">
+        {if isset($period.id)}<input type="hidden" name="data[periods][{$key|escape}][id]" value="{$period.id|escape}">{/if}
+        <input type="text" name="data[periods][{$key|escape}][start_date]" class="js-datepicker" autocomplete="off" data-format="yy-mm-dd"
+               {if isset($date.start_date)}value="{$period.start_date|escape}"{/if}>
+    </td>
+    <td class="rc-required">
+        {if isset($period.id)}<input type="hidden" name="data[periods][{$key|escape}][id]" value="{$key|escape}">{/if}
+        <input type="text" name="data[periods][{$key|escape}][end_date]" class="js-datepicker" autocomplete="off" data-format="yy-mm-dd"
+               {if isset($date.end_date)}value="{$period.end_date|escape}"{/if}>
+    </td>
+    <td>
+        <div class="js-delete-dependent rc-float-right rc-pointer rc-fill-dark rc-icon20" data-type="period">
+            {include $app_path|cat:'/img/svg/trash.svg'}
+        </div>
+    </td>
+</tr>

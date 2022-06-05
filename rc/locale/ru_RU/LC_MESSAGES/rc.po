@@ -1,0 +1,66 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blog\n"
+"POT-Creation-Date: 2011-11-11 13:35+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: blog\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.7.6\n"
+"Language: ru_RU\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /wa-apps/esbn/config/site.php
+msgid "Main residential complex"
+msgstr "Главный жилой комплекс"
+
+#: /wa-apps/esbn/config/site.php
+msgid "Homepage <title>"
+msgstr "Заголовок главной страницы <title>"
+
+#: /wa-apps/esbn/config/site.php
+msgid "As specified"
+msgstr "Указать явно"
+
+#: /wa-apps/esbn/config/site.php
+msgid "Homepage META Keywords"
+msgstr "META Keywords главной страницы"
+
+#: /wa-apps/esbn/config/site.php
+msgid "Homepage META Description"
+msgstr "META Description главной страницы"
+
+#: /wa-apps/esbn/config/site.php
+msgid "Storefront"
+msgstr "Витрина"
+
+#: /wa-apps/esbn/templates/layouts/Backend.html
+msgid "Real estate"
+msgstr "База недвижимости"
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "URLs"
+msgstr "URL страниц"
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your address"
+msgstr "Ваш адрес"
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your main phone number"
+msgstr "Основной телефонный номер"
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your additional phone number"
+msgstr "Дополнительный телефонный номер"
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your Jivosite API-key"
+msgstr "Ваш API-ключ сервиса Jivosite"
+

@@ -1,0 +1,53 @@
+<form class="js-form rc-form" action="?module=product&action=save">
+    {if isset($product.type)}{$rc_type = $product.type}{/if}
+    <input name="data[id]" type="hidden" {if isset($product.id)}value="{$product.id}"{/if}>
+    <input name="data[product][type]" type="hidden" value="{$rc_type|escape}">
+    <div class="rc-fields">
+        {include $app_path|cat:'/templates/fields.html' current_row=$product row_name='[product]'}
+        {if $rc_type == 2}
+            {if !empty($sku[0].id)}
+                <input type="hidden" name="data[sku][0][id]"  value="{$sku[0].id|escape}">
+                {$sku = $sku[0]}
+            {/if}
+            {$wa->rc->unsetValue($sku_fields, 'name')}
+            {include $app_path|cat:'/templates/fields.html' fields=$sku_fields current_row=$sku row_name='[sku][0]'}
+        {/if}
+        {if $rc_type == 1}
+            <div class="rc-flex rc-column rc-mt10">
+                <div class="rc-data-tables">
+                    <table class="js-parent" data-id="{if isset($product.id)}{$product.id}{else}0{/if}">
+                        <thead>
+                        <tr>
+                            {foreach $sku_fields as $code => $tr_field}
+                                <th><p>{$tr_field.name|escape}</p></th>
+                            {/foreach}
+                            <th>
+                                <div class="js-add rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="sku">
+                                    {include $app_path|cat:'/img/svg/plus.svg'}
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {if empty($sku)}
+                            {include $app_path|cat:'/templates/add/Sku.html'}
+                        {else}
+                            {foreach $sku as $key => $s}
+                                {include $app_path|cat:'/templates/add/Sku.html'}
+                            {/foreach}
+                        {/if}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {/if}
+        <div class="rc-flex rc-column rc-mt10">
+            {include $app_path|cat:'/templates/includes/ProductIngredients.html' rc_object_type='product'}
+        </div>
+        <div class="rc-field buttons">
+            <input type="submit" value="Сохранить" class="rc-p10 rc-pointer rc-background">
+            <span class="js-form-message"></span>
+            <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+        </div>
+    </div>
+</form>

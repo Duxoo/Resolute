@@ -1,0 +1,22 @@
+{foreach $fields as $code => $field}
+    {if !empty($field.type)}
+        <div class="rc-field">
+            <div class="rc-name"><p>{$field.name|escape}</p></div>
+            <div class="rc-value{if empty($field.nullable)} rc-required{/if}">
+                {include $app_path|cat:'/templates/input.html'}
+                {if !empty($field.hint)}
+                    <br>
+                    {if is_array($field.hint)}
+                        {foreach $field.hint as $hint}
+                            <br>
+                            <div class="rc-hint">{$hint|escape}</div>
+                        {/foreach}
+                    {else}
+                        <br>
+                        <div class="rc-hint">{$field.hint|escape}</div>
+                    {/if}
+                {/if}
+            </div>
+        </div>
+    {/if}
+{/foreach}

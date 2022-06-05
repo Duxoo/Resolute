@@ -1,0 +1,36 @@
+<div class="rc-flex">
+    <div class="rc-half-column">
+        <div class="rc-content-block rc-mb20 rc-p20">
+            <div class="rc-fs18 rc-dark-color rc-bb-main rc-tb10-dp20 rc-mb20">Товары списка</div>
+            <div class="rc-data-tables">
+                <table class="js-data-table" data-min-length="100" data-max-length="200" data-action="?module=set&action=products&selected=1&id={$id|escape}">
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="rc-half-column">
+        <div class="rc-content-block rc-mb20 rc-p20">
+            <div class="rc-fs18 rc-dark-color rc-bb-main rc-tb10-dp20 rc-mb20">Товары, которые можно добавить</div>
+            <div class="rc-data-tables">
+                <table class="js-data-table" data-action="?module=set&action=products&id={$id|escape}">
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

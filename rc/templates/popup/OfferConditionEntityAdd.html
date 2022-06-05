@@ -1,0 +1,43 @@
+<form action="?module=offer&action=conditionEntityAdd" method="post" class="js-popup-add-form js-dependence js-required-parent">
+    <input name="data[offer_id]" value="{$id|escape}" hidden>
+    <div class="js-tab-block rc-flex rc-screen-switch-field" data-tab-type="only-change">
+        <input id="choose_product" type="radio" name="data[type]" value="1" checked>
+        <label class="js-tab js-required-control rc-background-hover rc-center rc-p10 rc-pointer" for="choose_product" data-tab="product">Товар</label>
+        <input id="choose_set" type="radio" name="data[type]" value="2">
+        <label class="js-tab js-required-control rc-background-hover rc-center rc-p10 rc-pointer" for="choose_set" data-tab="set">Список</label>
+    </div>
+    <div class="js-tab-content js-required-content" data-tab="product">
+        <div class="rc-field">
+            <div class="rc-name">Выбрать товар</div>
+            <div class="js-required-child value rc-required">
+                <select class="js-select-two" name="data[product][entity_id]" data-action="?module=product&action=listSelect" data-placeholder="Выберите продукт" style="width: 300px"></select>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Количество</div>
+            <div class="js-required-child value rc-required">
+                <input type="text" name="data[product][quantity]">
+            </div>
+        </div>
+    </div>
+    <div class="js-tab-content js-required-content" data-tab="set" style="display: none">
+        <div class="rc-field">
+            <div class="rc-name">Выбрать список</div>
+            <div class="js-required-child value">
+                <select class="js-select-two" name="data[set][entity_id]" data-action="?module=set&action=listSelect" data-placeholder="Выберите список" style="width: 300px"></select>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Количество</div>
+            <div class="js-required-child value">
+                <input type="text" name="data[set][quantity]">
+            </div>
+        </div>
+    </div>
+    <div class="rc-p10">
+        <div class="rc-float-right rc-button rc-background-hover rc-pointer b-close">Отмена</div>
+        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Добавить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

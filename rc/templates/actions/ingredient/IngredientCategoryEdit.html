@@ -1,0 +1,28 @@
+<div class="rc-content-block rc-content-block rc-mb20  rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($category.name)}
+            Категория ингредиентов "{$category.name|escape}"
+        {else}
+            Новая категория ингредиентов
+        {/if}
+    </div>
+    <a href="?module=ingredientCategory" class="rc-float-right">К списку категорий ингредиентов</a>
+</div>
+{if isset ($category.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="mainCategory">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="categoryIngredients">Ингредиенты</li>
+            </ul>
+        </div>
+    </div>
+    <div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white" data-type="ingredientCategory" data-id="{$category.id|escape}">
+        <div class="js-tab-content" data-tab="mainCategory"></div>
+        <div class="js-tab-content" data-tab="categoryIngredients"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/ingredient/IngredientTabMainCategory.html"}
+    </div>
+{/if}

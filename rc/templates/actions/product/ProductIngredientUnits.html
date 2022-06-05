@@ -1,0 +1,6 @@
+{if !empty($config.unit[$config.dimension[$ingredient.dimension].code])}
+    <option value="0">---</option>
+    {foreach $config.unit[$config.dimension[$ingredient.dimension].code] as $unit_id => $value}
+        <option value="{$unit_id|escape}"{if !empty($ingredient.unit) && $ingredient.unit == $unit_id} selected{/if}>{$value.name|escape}</option>
+    {/foreach}
+{/if}

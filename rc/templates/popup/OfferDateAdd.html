@@ -1,0 +1,40 @@
+<div class="message error rc-mb15">Добавление новой даты для акции</div>
+<form action="?module=offer&action=dateSave" method="post" class="js-popup-add-form js-dependence">
+    <input name="data[offer_id]" value="{$id|escape}" hidden>
+    <div class="field">
+        <div class="name">Дата</div>
+        <div class="value">
+            <input type="text" name="data[date]" class="js-offer-datepicker">
+        </div>
+    </div>
+    <div class="field">
+        <div class="name">Дата начала периода</div>
+        <div class="value">
+            <input type="text" name="data[start_time]" class="js-timepicker">
+        </div>
+    </div>
+    <div class="field">
+        <div class="name">Дата окончания периода</div>
+        <div class="value">
+            <input type="text" name="data[end_time]" class="js-timepicker">
+        </div>
+    </div>
+    <input type="submit" class="rc-submit-button rc-background rc-mb15 rc-float-left rc-background-hover-dark" value="Добавить">
+    <div class="rc-submit-button rc-background rc-mb15 rc-float-right rc-background-hover-dark js-popup-close">Отмена</div>
+</form>
+<script>
+    $(document).ready(function () {
+        $(".js-timepicker").timepicker({
+            timeFormat: 'HH:mm',
+            interval: 15
+        });
+        var data_picker = $('.js-offer-datepicker').datepicker( {
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd.mm'
+        });
+        if (data_picker.last().val() === "") {
+            data_picker.last().datepicker("setDate", new Date());
+        }
+    });
+</script>

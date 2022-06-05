@@ -1,0 +1,7 @@
+{$count*1}
+{if empty($dimension) && isset($config.ingredient.dimension)}{$dimension = $config.ingredient.dimension}{/if}
+{if isset($config.unit[$config.dimension[$dimension].code])}
+    {foreach $config.unit[$config.dimension[$dimension].code] as  $u_id => $unit_data}
+        {if $unit == $u_id} {$unit_data.name|escape}{/if}
+    {/foreach}
+{/if}

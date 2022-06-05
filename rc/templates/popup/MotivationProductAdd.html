@@ -1,0 +1,35 @@
+<form action="?module=motivation&action=entityAdd" method="post" class="js-popup-add-form js-dependence js-required-parent">
+    <input name="data[motivation_id]" value="{$id|escape}" type="hidden">
+    <div class="rc-fields">
+        <div class="rc-field">
+            <div class="rc-name">Тип элемента</div>
+            <div class="rc-value rc-required">
+                <select id="motivation-product-type" name="data[type]">
+                    {foreach $config.entity_type as $key => $entity_type}
+                        <option value="{$key|escape}">{$entity_type.name|escape}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Элемент</div>
+            <div class="rc-value rc-required">
+                <select name="data[entity_id]" class="js-select-two" data-dependent="motivation-product-type" data-action="?module=motivation&action=getEntity&id={$id|escape}" style="width:300px">
+                    <option value="0">---</option>
+                </select>
+            </div>
+        </div>
+        <div class="rc-field">
+            <div class="rc-name">Кол-во</div>
+            <div class="rc-value rc-required">
+                <input name="data[quantity]" type="number" min="1" value="1">
+            </div>
+        </div>
+    </div>
+    <div class="rc-p10">
+        <div class="rc-float-right rc-button rc-background-hover rc-pointer b-close">Отмена</div>
+        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Добавить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

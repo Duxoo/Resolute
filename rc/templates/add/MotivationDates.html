@@ -1,0 +1,17 @@
+<tr class="js-dependent" data-id="{if isset($date.month_day)}{$date.month_day|escape}{/if}">
+    <td>
+        <input type="text" name="data[dates][{$key}][date]" class="js-datepicker" autocomplete="off" data-format="dd.mm"
+               {if isset($date.month_day)}value="{substr($date.month_day, 0, 2)|string_format:"%02d"}.{substr($date.month_day, 2, 2)|string_format:"%02d"}"{/if}>
+    </td>
+    <td class="rc-required">
+        <input type="text" id="dates_start_{$key}" class="js-timepicker" data-format="HH:mm" name="data[dates][{$key}][start_time]" value="{$date.start_time}" autocomplete="off">
+    </td>
+    <td class="rc-required">
+        <input type="text" id="dates_end_{$key}" class="js-timepicker" data-format="HH:mm" name="data[dates][{$key}][end_time]" value="{$date.end_time}" autocomplete="off">
+    </td>
+    <td>
+        <div class="js-delete-dependent rc-float-right rc-pointer rc-fill-dark rc-icon20" data-type="date">
+            {include $app_path|cat:'/img/svg/trash.svg'}
+        </div>
+    </td>
+</tr>

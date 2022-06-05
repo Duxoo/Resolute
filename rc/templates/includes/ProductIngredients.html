@@ -1,0 +1,31 @@
+{$id = 0}
+{if $rc_object_type == 'sku'}
+    {if isset($sku.id)}{$id = $sku.id}{/if}
+{else}
+    {if isset($product.id)}{$id = $product.id}{/if}
+{/if}
+<div class="rc-data-tables">
+    <table class="js-parent" data-id="{$id|escape}" data-type="{$rc_object_type|escape}">
+        <thead>
+        <tr>
+            <th>Ингредиент</th>
+            <th>Количество</th>
+            <th>ед. измерения</th>
+            <th>
+                <div class="js-add rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="ingredient">
+                    {include $app_path|cat:'/img/svg/plus.svg'}
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody class="js-parent-content">
+        {if $ingredients}
+            {foreach $ingredients as $key => $ingredient}
+                {include $app_path|cat:'/templates/add/Ingredient.html'}
+            {/foreach}
+        {else}
+            {include $app_path|cat:'/templates/add/Ingredient.html'}
+        {/if}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,7 @@
+<div class="message error rc-mb15">Вы уверены, что хотите удалить этот период у данной мотивации?</div>
+<form action="?module=motivation&action=periodDelete" method="post" class="js-delete-form js-dependence">
+    <input name="id" value="{$id|escape}" hidden>
+    <input name="dependent_id" value="{$dependent_id|escape}" hidden>
+    <input type="submit" class="rc-submit-button rc-background rc-mb15 rc-float-left rc-background-hover-dark js-delete-submit" value="Удалить">
+    <div class="rc-submit-button rc-background rc-mb15 rc-float-right rc-background-hover-dark js-popup-close">Отмена</div>
+</form>

@@ -1,0 +1,9 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($product.name)}{$product.name|escape}{else}Новое дополнение{/if}
+    </div>
+    <a href="?module=addition" class="rc-float-right">К списку дополнений</a>
+</div>
+<div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white" data-type="product" data-id="{$product.id|escape}">
+    {include $app_path|cat:'/templates/forms/Product.html' rc_type=2}
+</div>

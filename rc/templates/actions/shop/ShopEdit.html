@@ -1,0 +1,34 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($shop.name)}
+            Точка "{$shop.name|escape}"
+        {else}
+            Новая точка
+        {/if}
+    </div>
+    <a href="?module=shop" class="rc-float-right">К списку точек</a>
+</div>
+{if isset ($shop.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="supplier">Поставщики</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="motivation">Мотивации</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="offer">Акции</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="inventoryDates">Инвентаризация</li>
+            </ul>
+        </div>
+    </div>
+    <div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white" data-type="shop" data-id="{$shop.id|escape}">
+        <div class="js-tab-content" data-tab="main"></div>
+        <div class="js-tab-content" data-tab="supplier"></div>
+        <div class="js-tab-content" data-tab="motivation"></div>
+        <div class="js-tab-content" data-tab="offer"></div>
+        <div class="js-tab-content" data-tab="inventoryDates"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/shop/ShopTabMain.html"}
+    </div>
+{/if}

@@ -1,0 +1,28 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($motivation.name)}{$motivation.name|escape}{else}Новая мотивация{/if}
+    </div>
+    <a href="?module=motivation" class="rc-float-right">К списку мотиваций</a>
+</div>
+{if isset ($motivation.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="products">Товары</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="time">Время действия</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="shops">Точки</li>
+            </ul>
+        </div>
+    </div>
+    <div class="rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white">
+        <div class="js-content js-tab-content" data-tab="main" data-type="motivation" data-id="{$motivation.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="products" data-type="motivation" data-id="{$motivation.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="time" data-type="motivation" data-id="{$motivation.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="shops" data-type="motivation" data-id="{$motivation.id|escape}"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/motivation/MotivationTabMain.html"}
+    </div>
+{/if}

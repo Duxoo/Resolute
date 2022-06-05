@@ -1,0 +1,13 @@
+<div class="rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        <p>Инвентаризации</p>
+    </div>
+    <a href="?module={$module|escape}&action=edit" class="rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover">
+        {include $app_path|cat:'/img/svg/plus.svg'}
+    </a>
+</div>
+<div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white">
+    <div class="rc-data-tables">
+        {include $app_path|cat:'/templates/data_table.html' action='?module=inventory&action=getList'}
+    </div>
+</div>

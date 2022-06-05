@@ -1,0 +1,40 @@
+<div class="js-required-parent rc-screen-switch-field rc-flex rc-column">
+    <div class="js-tab-block rc-flex" data-tab-type="only-change">
+        <input id="screen_void" type="radio" name="screen_type" value="0" checked>
+        <label class="js-tab js-required-control rc-background-hover rc-center rc-p10 rc-pointer" for="screen_void" data-tab="void">Пустое место</label>
+        <input id="screen_title" type="radio" name="screen_type" value="1">
+        <label class="js-tab js-required-control rc-background-hover rc-center rc-p10 rc-pointer" for="screen_title" data-tab="title">Заголовок</label>
+        <input id="screen_another_screen" type="radio" name="screen_type" value="2">
+        <label class="js-tab js-required-control rc-background-hover rc-center rc-p10 rc-pointer" for="screen_another_screen" data-tab="screen">Другой экран</label>
+        <input id="screen_product" type="radio" name="screen_type" value="3">
+        <label class="js-tab js-required-control rc-background-hover rc-center rc-p10 rc-pointer" for="screen_product" data-tab="product">Товар</label>
+    </div>
+    <div class="js-tab-content js-required-content" style="display: none" data-tab="void"></div>
+    <div class="js-tab-content js-required-content" style="display: none" data-tab="title">
+        <div class="rc-field">
+            <div class="js-required-child value" style="width: 100%">
+                <input type="text" name="screen_title_text" placeholder="Текст заголовка" style="width: 100%">
+            </div>
+        </div>
+    </div>
+    <div class="js-tab-content js-required-content" style="display: none" data-tab="screen">
+        <div class="rc-field">
+            <div class="js-required-child value" style="width: 100%">
+                <select class="js-select-two js-name" data-action="?module=screen&action=listSelect" data-placeholder="Выберите экран меню" data-id="{$id|escape}" style="width: 100%"></select>
+            </div>
+        </div>
+    </div>
+    <div class="js-tab-content js-required-content" style="display: none" data-tab="product">
+        <div class="rc-field">
+            <div class="js-required-child value" style="width: 100%">
+                <select class="js-select-two js-name" data-action="?module=product&action=listSelect" data-placeholder="Выберите продукт" style="width: 100%"></select>
+            </div>
+        </div>
+    </div>
+    <div class="rc-mt10">
+        <div class="rc-float-right rc-button rc-background-hover rc-pointer b-close">Отмена</div>
+        <input type="button" class="js-screen-add-element rc-pointer rc-background" value="Добавить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</div>

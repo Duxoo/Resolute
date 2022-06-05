@@ -1,0 +1,53 @@
+{if empty($counter)}
+    {$counter = 0}
+{else}
+    {$counter = $counter + 1}
+{/if}
+{if $field.type == 'string' || $field.type == 'decimal' || $field.type == 'int'}
+    {if ($field.type == 'decimal' || $field.type == 'int') && isset($current_row[$code])}{$current_row[$code] = $current_row[$code]*1}{/if}
+    <input type="{if $field.type == 'string'}text{else}number{/if}" name="data{$row_name}[{$code|escape}]"
+           value="{if isset($current_row[$code])}{$current_row[$code]|escape}{/if}"
+            {if isset($field.max_length)} maxlength="{$field.max_length|escape}"{/if}{if isset($field.min_length)} minlength="{$field.min_length|escape}"{/if}
+            {if isset($field.max)} max="{$field.max|escape}"{/if}{if isset($field.min)} min="{$field.min|escape}"{/if}
+            {if $field.type == 'decimal'} step="{if isset($field.step)}{$field.step|escape}{else}0.0001{/if}"{/if}
+    >
+{elseif ($field.type == 'password')}
+    <input type="text" value="**********">
+{elseif ($field.type == 'select-two')}
+    <select name="data{$row_name}[{$code|escape}]" class="js-select-two" data-action="{$field.action|escape}">
+        {$name_code = str_replace('_id', '_name', $code)}
+        {if isset($current_row[$code]) && isset($current_row[$name_code])}
+            <option value="{$current_row[$code]|escape}">{$current_row[$name_code]|escape}</option>
+        {/if}
+    </select>
+{elseif ($field.type == 'config')}
+    {$current_config = null}
+    {if isset($config[$field.code])}
+        {$current_config = $config[$field.code]}
+    {else}
+        {if isset($field.config) && isset($config[$field.config])}
+            {$current_config = $config[$field.config]}
+        {/if}
+    {/if}
+    {if isset($current_config)}
+        <select name="data{$row_name}[{$code|escape}]">
+            <option value="-1"{if empty($current_row[$code])} selected{/if}>---</option>
+            {foreach $current_config as $key => $value}
+                <option value="{$key|escape}"{if isset($current_row[$code]) && $current_row[$code] == $key} selected{/if}>{$value.name|escape}</option>
+            {/foreach}
+        </select>
+    {else}
+        Ошибка получения конфигурационных данных
+    {/if}
+{elseif ($field.type == 'text')}
+    <textarea name="data{$row_name}[{$code|escape}]"{if isset($field.redactor)} class="js-redactor"{/if}>{if isset($current_row[$code])}{$current_row[$code]|escape}{/if}</textarea>
+{elseif ($field.type == 'time')}
+    <input type="text" id="times_{$code|escape}_{$counter|escape}" class="js-timepicker" name="data{$row_name}[{$code|escape}]"
+           value="{if isset($current_row[$code])}{$current_row[$code]|escape}{/if}" autocomplete="off" data-format="{$field.format|escape}">
+{elseif ($field.type == 'date')}
+    <input type="text" id="dates_{$code|escape}_{$counter|escape}" class="js-datepicker" name="data{$row_name}[{$code|escape}]"
+           value="{if isset($current_row[$code])}{$current_row[$code]|escape}{/if}" autocomplete="off" data-format="{$field.format|escape}">
+{elseif ($field.type == 'checkbox')}
+    <input type="checkbox" id="checkbox_{$code|escape}_{$counter|escape}" name="data{$row_name}[{$code|escape}]"{if isset($current_row[$code])} checked{/if}>
+    <label for="checkbox_{$code|escape}_{$counter|escape}">{include $app_path|cat:'/templates/check.html'}</label>
+{/if}

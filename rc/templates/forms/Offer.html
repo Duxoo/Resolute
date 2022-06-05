@@ -1,0 +1,15 @@
+<form class="js-form rc-form" action="?module=offer&action=save">
+    {if isset($offer.info.id)}
+        <input name="data[id]" type="hidden" value="{$offer.info.id}">
+    {/if}
+    <div class="rc-fields">
+        {include $app_path|cat:'/templates/fields.html' current_row=$offer.info row_name='[offer]'}
+        <div class="rc-field buttons">
+            <div class="rc-value submit">
+                <em class="validation-notice errormsg"></em>
+                <input type="submit" value="Сохранить" class="rc-background rc-pointer">
+                <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+            </div>
+        </div>
+    </div>
+</form>

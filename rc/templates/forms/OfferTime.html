@@ -1,0 +1,66 @@
+<form class="js-form js-required-parent rc-form" action="?module=offer&action=save" data-method="time">
+    <input name="data[id]" type="hidden" value="{$offer.info.id}">
+    <div class="js-tab-block rc-m10" data-tab-type="only-change">
+        {foreach $offer_time as $key => $time}
+            <input type="radio" id="time_{$key|escape}" name="data[offer][timing_type]"
+                   value="{$key|escape}" data-code="{$time.code|escape}" {if $key == $offer.info.timing_type}checked{/if}>
+            <label for="time_{$key}" class="js-tab js-required-control rc-mr16" data-tab="{$time.code|escape}">
+                {$time.name|escape}
+            </label>
+        {/foreach}
+    </div>
+    {foreach $offer_time as $key => $time}
+        <div class="js-tab-content js-required-content"{if $offer.info.timing_type != $key} style=" display: none"{/if} data-tab="{$time.code|escape}">
+            {if $time.code == "weekdays"}
+                <div class="rc-data-tables">
+                    <table class="js-parent">
+                        <thead>
+                        <tr>
+                            <th>Активно</th>
+                            <th>День недели</th>
+                            <th>Начало периода</th>
+                            <th>Окончание периода</th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {foreach $time.values as $key => $value}
+                            {include $app_path|cat:'/templates/add/OfferWeekdays.html'}
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            {elseif $time.code == "dates"}
+                <div class="js-offer-time-blocks rc-data-tables">
+                    <table class="js-parent" data-id="{if isset($offer.info.id)}{$offer.info.id|escape}{/if}">
+                        <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Начало периода</th>
+                            <th>Окончание периода</th>
+                            <th>
+                                <div class="js-add rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="offerDates">
+                                    {include $app_path|cat:'/img/svg/plus.svg'}
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {if $offer.dates}
+                            {foreach $offer.dates as $key => $date}
+                                {include $app_path|cat:'/templates/add/OfferDates.html'}
+                            {/foreach}
+                        {else}
+                            {include $app_path|cat:'/templates/add/OfferDates.html'}
+                        {/if}
+                        </tbody>
+                    </table>
+                </div>
+            {/if}
+        </div>
+    {/foreach}
+    <div class="rc-mt10">
+        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Сохранить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

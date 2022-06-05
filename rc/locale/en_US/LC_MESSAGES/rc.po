@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blog\n"
+"POT-Creation-Date: 2011-11-11 13:30+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: blog\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.7.6\n"
+"Language: en_US\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /wa-apps/esbn/config/site.php
+msgid "Main residential complex"
+msgstr ""
+
+#: /wa-apps/esbn/config/site.php
+msgid "Homepage <title>"
+msgstr ""
+
+#: /wa-apps/esbn/config/site.php
+msgid "As specified"
+msgstr ""
+
+#: /wa-apps/esbn/config/site.php
+msgid "Homepage META Keywords"
+msgstr ""
+
+#: /wa-apps/esbn/config/site.php
+msgid "Homepage META Description"
+msgstr ""
+
+#: /wa-apps/esbn/config/site.php
+msgid "Storefront"
+msgstr ""
+
+#: /wa-apps/esbn/templates/layouts/Backend.html
+msgid "Real estate"
+msgstr ""
+
+#: /wa-apps/shop/lib/config/site.php:38
+msgid "URLs"
+msgstr ""
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your address"
+msgstr ""
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your main phone number"
+msgstr ""
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your additional phone number"
+msgstr ""
+
+#: /wa-apps/shop/lib/config/site.php
+msgid "Your Jivosite API-key"
+msgstr ""

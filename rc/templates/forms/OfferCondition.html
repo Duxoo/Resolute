@@ -1,0 +1,72 @@
+<form class="js-form js-required-parent rc-form" action="?module=offer&action=save" data-method="condition">
+    <input name="data[id]" type="hidden" value="{$offer.info.id|escape}">
+    <div class="js-tab-block rc-m10" data-tab-type="only-change">
+        {foreach $offer_condition as $key => $condition}
+            <input type="radio" id="condition_{$key|escape}" name="data[offer][condition_type]"
+                   value="{$key|escape}"{if $key == $offer.info.condition_type} checked{/if}>
+            <label for="condition_{$key|escape}" class="js-tab js-required-control rc-mr16" data-tab="{$condition.code|escape}">
+                {$condition.name|escape}
+            </label>
+        {/foreach}
+    </div>
+    {foreach $offer_condition as $key => $condition}
+        <div class="js-tab-content js-required-content"{if $offer.info.condition_type != $key} style=" display: none"{/if} data-tab="{$condition.code|escape}">
+            {if $condition.code == "products"}
+                <div class="rc-data-tables">
+                    <table class="js-parent" data-id="{if isset($offer.info.id)}{$offer.info.id|escape}{/if}">
+                        <thead>
+                        <tr>
+                            <th>Тип</th>
+                            <th>Наименование</th>
+                            <th>Количество</th>
+                            <th>
+                                <div class="js-add-popup rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="conditionEntity">
+                                    {include $app_path|cat:'/img/svg/plus.svg'}
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {if $offer.condition_items}
+                            {$i = 0}
+                            {foreach $offer.condition_items as $key => $items}
+                                {foreach $items as $key2 => $item}
+                                    {include $app_path|cat:'/templates/add/OfferConditionItems.html'}
+                                    {$i = $i + 1}
+                                {/foreach}
+                            {/foreach}
+                        {else}
+                            {include $app_path|cat:'/templates/add/OfferConditionItems.html'}
+                        {/if}
+                        </tbody>
+                    </table>
+                </div>
+            {elseif $condition.code == "category"}
+                {if $offer.contact_groups}
+                    {foreach $offer.contact_groups as $key => $group}
+                        {$checked = false}
+                        {foreach $offer.contact_group as $contact_group}
+                            {if $group.id == $contact_group.group_id}
+                                {$checked = true}
+                                {break}
+                            {/if}
+                        {/foreach}
+                        <div class="rc-pt10 rc-pb10">
+                            <input type="checkbox" id="group_{$key}" name="data[offer][conditions][contact_group][]"
+                                   value="{$group.id}" {if $checked}checked{/if}>
+                            <label for="group_{$key}">
+                                {include $app_path|cat:'/templates/check.html'}
+                                {$group.name|escape}
+                            </label>
+                        </div>
+                    {/foreach}
+                {/if}
+            {/if}
+        </div>
+    {/foreach}
+    <div class="rc-mt10">
+        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Сохранить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

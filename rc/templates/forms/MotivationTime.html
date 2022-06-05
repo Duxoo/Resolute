@@ -1,0 +1,87 @@
+<form class="js-form js-required-parent rc-form" action="?module=motivation&action=saveTime" data-method="time">
+    <input name="id" type="hidden" value="{$motivation.id}">
+    <div class="js-tab-block rc-m10" data-tab-type="only-change">
+        {foreach $config.motivation_timing_type as $key => $time}
+            <input type="radio" id="time_{$key|escape}" name="data[timing_type]"
+                   value="{$key|escape}" data-code="{$time.code|escape}" {if $key == $motivation.timing_type}checked{/if}>
+            <label for="time_{$key}" class="js-tab js-required-control rc-mr16" data-tab="{$time.code|escape}">
+                {$time.name|escape}
+            </label>
+        {/foreach}
+    </div>
+    {foreach $config.motivation_timing_type as $key => $time}
+        <div class="js-tab-content js-required-content"{if $motivation.timing_type != $key} style=" display: none"{/if} data-tab="{$time.code|escape}">
+            {if $time.code == "weekdays"}
+                <div class="rc-data-tables">
+                    <table class="js-parent">
+                        <thead>
+                        <tr>
+                            <th>Активно</th>
+                            <th>День недели</th>
+                            <th>Начало периода</th>
+                            <th>Окончание периода</th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {foreach $time.values as $key => $value}
+                            {include $app_path|cat:'/templates/add/MotivationWeekdays.html'}
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            {elseif $time.code == "periods"}
+                <div class="rc-data-tables">
+                    <table class="js-parent"{if isset($motivation.id)} data-id="{$motivation.id|escape}"{/if}>
+                        <thead>
+                        <tr>
+                            <th>Начало периода</th>
+                            <th>Окончание периода</th>
+                            <th>
+                                <div class="js-add rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="motivationPeriods">
+                                    {include $app_path|cat:'/img/svg/plus.svg'}
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {if $motivation.periods}
+                            {foreach $motivation.periods as $key => $period}
+                                {include $app_path|cat:'/templates/add/MotivationPeriods.html'}
+                            {/foreach}
+                        {/if}
+                        </tbody>
+                    </table>
+                </div>
+            {elseif $time.code == "dates"}
+                <div class="rc-data-tables">
+                    <table class="js-parent" data-id="{if isset($motivation.id)}{$motivation.id|escape}{/if}">
+                        <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Время начала</th>
+                            <th>Время окончания</th>
+                            <th>
+                                <div class="js-add rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover-white rc-pointer" data-type="motivationDates">
+                                    {include $app_path|cat:'/img/svg/plus.svg'}
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-parent-content">
+                        {if $motivation.dates}
+                            {foreach $motivation.dates as $key => $date}
+                                {include $app_path|cat:'/templates/add/MotivationDates.html'}
+                            {/foreach}
+                        {/if}
+                        </tbody>
+                    </table>
+                </div>
+            {/if}
+        </div>
+    {/foreach}
+    <div class="rc-mt10">
+        <input type="submit" class="rc-p10 rc-pointer rc-background" value="Сохранить">
+        <span class="js-form-message"></span>
+        <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+    </div>
+</form>

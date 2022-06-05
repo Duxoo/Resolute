@@ -1,0 +1,68 @@
+<div class="rc-p5 rc-flex rc-flex-justify-between">
+  <div>
+    <label for="name">Название: </label><input id="name" type="text" value="{if isset($screen.info.name)}{$screen.info.name|escape}{else}Новое меню{/if}">
+  </div>
+  {if isset($screen.info.id)}
+    <div class="js-delete js-form rc-pointer rc-fill-dark rc-fill-hover rc-icon20">
+      {include $app_path|cat:'/img/svg/trash.svg'}
+      <input type="hidden" id="js_screen_id" name="data[id]" value="{$screen.info.id}">
+    </div>
+  {/if}
+</div>
+<ul class="rc-screen-list js-screen">
+  {for $i = 0; $i < 60; $i++}
+    {$width_coef = (isset($screen.positions[$i].width)) ? $screen.positions[$i].width: 1}
+    {$width = $width_coef * 16.6666666667}
+    {$height_coef = (isset($screen.positions[$i].height)) ? $screen.positions[$i].height: 1}
+    {$height = $height_coef * 85}
+
+    {$name = (isset($screen.positions[$i].name)) ? $screen.positions[$i].name: ""}
+    {$entity_id = (isset($screen.positions[$i].entity_id)) ? $screen.positions[$i].entity_id: 0}
+    {$type = (isset($screen.positions[$i].type)) ? $screen.positions[$i].type: 0}
+
+    <li style="width: {$width}%;height: {$height}px"
+        class="js-screen-position rc-inline rc-float-left rc-p5 rc-float-left rc-center"
+        data-x="{$width_coef}" data-y="{$height_coef}" data-text="{$name|escape}" data-entity="{$entity_id}" data-type="{$type}">
+      <div class="rc-screen-position rc-background rc-flex rc-flex-center rc-flex-justify-center">
+        <div class="js-screen-name-block rc-screen-name" style="height: {$height - 10}px">
+          <div class="js-screen-add rc-screen-add rc-fill-white rc-fill-hover-dark rc-pointer"{if $type != 0} style="display: none"{/if}>
+            {include $app_path|cat:'/img/svg/plus.svg'}
+          </div>
+          <div class="js-screen-name-text">{$name|escape}</div>
+        </div>
+        <div class="rc-screen-edit js-screen-edit rc-fill-white rc-fill-hover-dark rc-pointer" {if $type == 0} style="display: none"{/if}>
+          {include $app_path|cat:'/img/svg/pencil.svg'}
+        </div>
+        <div class="rc-screen-controls">
+          <div class="js-screen-control-left rc-screen-control rc-screen-control-left rc-rotate-180 rc-fill-white rc-fill-hover-dark rc-pointer">
+            {include $app_path|cat:'/img/svg/arrow-right.svg'}
+          </div>
+          <div class="js-screen-control-top rc-screen-control rc-screen-control-top rc-rotate--90 rc-fill-white rc-fill-hover-dark rc-pointer">
+            {include $app_path|cat:'/img/svg/arrow-right.svg'}
+          </div>
+          <div class="js-screen-control-right rc-screen-control rc-screen-control-right rc-fill-white rc-fill-hover-dark rc-pointer">
+            {include $app_path|cat:'/img/svg/arrow-right.svg'}
+          </div>
+          <div class="js-screen-control-bottom rc-screen-control rc-screen-control-bottom rc-rotate-90 rc-fill-white rc-fill-hover-dark rc-pointer">
+            {include $app_path|cat:'/img/svg/arrow-right.svg'}
+          </div>
+        </div>
+      </div>
+    </li>
+  {/for}
+</ul>
+<div class="js-save-screen rc-fixed rc-screen-save rc-background-dark rc-background-hover rc-pointer">Сохранить</div>
+<script>
+  $(document).ready(function () {
+      let screen = $(".js-screen");
+      screen.sortable({
+        sort: function (event, ui) {
+          //placeholder -> helper
+          let width = ui.helper.data("x") * 16.6666666667;
+          let height = ui.helper.height();
+          ui.placeholder.height(height);
+          ui.placeholder.css("width", width + "%");
+        }
+      });
+  });
+</script>

@@ -1,0 +1,26 @@
+<div class="rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        <p>{$name|escape}</p>
+    </div>
+    {if empty($not_added)}
+        <a href="?module={$module|escape}&action=edit" class="rc-block rc-icon20 rc-float-right rc-fill-dark rc-fill-hover">
+            {include $app_path|cat:'/img/svg/plus.svg'}
+        </a>
+    {/if}
+</div>
+<div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between" data-module="{$module|escape}">
+    <div class="rc-p5">
+        <ul class="rc-flex">
+            {foreach $statuses as $key => $status}
+                <li class="js-tab rc-tab rc-pointer" data-tab="{$status.code|escape}">
+                    <p>{$status.name|escape} <span class="rc-count">({if isset($counts[$key])}{$counts[$key]}{else}0{/if})</span></p>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>
+<div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white">
+    {foreach $statuses as $status}
+        <div class="js-tab-content" data-tab="{$status.code|escape}"></div>
+    {/foreach}
+</div>

@@ -1,0 +1,16 @@
+<div class="rc-mb10 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        Выбор точек, франшизы "{$contact.name|escape}"
+    </div>
+</div>
+<div class="rc-data-tables rc-pb20">
+    <table class="js-data-table display responsive nowrap" data-action="?module=franchisee&action=getShopList&franchisee_id={$contact.id|escape}">
+        <thead class="rc-background rc-bold rc-left">
+        <tr>
+            <th>Точка</th>
+            <th>Находится во франчайзи</th>
+        </tr>
+        </thead>
+        <tbody class="js-parent" data-type="shop"></tbody>
+    </table>
+</div>

@@ -1,0 +1,7 @@
+{foreach $td_fields as $code => $tr_field}
+    {if !empty($tr_field.type)}
+        <td class="{if empty($tr_field.nullable)}rc-required{/if}">
+            {include $app_path|cat:'/templates/input.html' field=$tr_field}
+        </td>
+    {/if}
+{/foreach}

@@ -1,0 +1,24 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($product.name)}{$product.name|escape}{else}Новый товар{/if}
+    </div>
+    <a href="?module=product" class="rc-float-right">К списку товаров</a>
+</div>
+{if isset ($product.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="additions">Дополнения</li>
+            </ul>
+        </div>
+    </div>
+    <div class="rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white">
+        <div class="js-content js-tab-content" data-tab="main" data-type="product" data-id="{$product.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="additions" data-type="product" data-id="{$product.id|escape}"></div>
+    </div>
+{else}
+    <div class="rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:'/templates/forms/Product.html' rc_type=1}
+    </div>
+{/if}

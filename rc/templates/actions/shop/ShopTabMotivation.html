@@ -1,0 +1,16 @@
+<div class="rc-mb10 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        Выбор мотиваций для точки "{$shop.name|escape}"
+    </div>
+</div>
+<div class="rc-data-tables rc-pb20">
+    <table class="js-data-table display responsive nowrap" data-action="?module=shop&action=getListMotivation&shop_id={$shop.id|escape}">
+        <thead class="rc-background rc-bold rc-left">
+        <tr>
+            <th>Название</th>
+            <th>Вкл</th>
+        </tr>
+        </thead>
+        <tbody class="js-parent" data-type="motivation"></tbody>
+    </table>
+</div>

@@ -1,0 +1,12 @@
+<h3 class="rc-color-dark">Адрес: {$stock.address|escape}</h3>
+<div class="rc-data-tables">
+    <table class="js-data-table" data-action="?module=stock&action=getIngredients&id={$stock.id|escape}">
+        <thead>
+        <tr>
+            <th><p>Ингредиент</p></th>
+            <th><p>Наличие</p></th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

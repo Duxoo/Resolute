@@ -1,0 +1,7 @@
+<div class="message error rc-mb15">Вы уверены, что хотите удалить данную дату проведения инвентаризации?</div>
+<form action="?module=product&action=deleteIngredient" method="post" class="js-delete-form js-dependence">
+    <input name="data[id]" value="{$id}" hidden>
+    <input name="data[dependent_id]" value="{$dependent_id}" hidden>
+    <input type="submit" class="rc-submit-button rc-background rc-mb15 rc-float-left rc-background-hover-dark js-delete-submit" value="Удалить">
+    <div class="rc-submit-button rc-background rc-mb15 rc-float-right rc-background-hover-dark js-popup-close">Отмена</div>
+</form>

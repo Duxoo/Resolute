@@ -1,0 +1,15 @@
+<div class="js-parent rc-data-tables" data-type="supplyItems">
+    <table class="js-data-table" data-action="?module=supply&action=getItems&id={$supply.id|escape}">
+        <thead>
+        <tr>
+            <th><p>Ингредиент</p></th>
+            {foreach $fields as $field}
+                {if $field.viewed}
+                    <th><p>{$field.name|escape}</p></th>
+                {/if}
+            {/foreach}
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

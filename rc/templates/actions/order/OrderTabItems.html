@@ -1,0 +1,20 @@
+<div class="rc-data-tables">
+    <table class="js-data-table">
+        <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Кол-во</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $items as $item}
+            <tr>
+                <td><a class="rc-color-black rc-underline rc-color-hover">{$item.name}</a></td>
+                <td>{$item.count}</td>
+                <td>{$item.price}</td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>

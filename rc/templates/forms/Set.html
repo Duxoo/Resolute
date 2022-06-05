@@ -1,0 +1,18 @@
+<div class="rc-content-block rc-mb20 rc-p5">
+    <form class="js-form rc-form" action="?module=set&action=save">
+        <input name="id" type="hidden" {if isset($set.id)}value="{$set.id}"{/if}>
+        <div class="rc-fields">
+            <div class="rc-field">
+                <div class="rc-name">Название</div>
+                <div class="rc-value rc-required">
+                    <input type="text" name="data[name]" value="{if isset($set.name)}{$set.name|escape}{/if}">
+                </div>
+            </div>
+            <div class="rc-field buttons">
+                <input type="submit" value="Сохранить" class="rc-p10 rc-pointer rc-background">
+                <span class="js-form-message"></span>
+                <i class="icon16 loading" style="margin-left: 16px; display: none;"></i>
+            </div>
+        </div>
+    </form>
+</div>

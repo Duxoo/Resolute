@@ -1,0 +1,32 @@
+<div class="rc-content-block rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($offer.info.name)}{$offer.info.name|escape}{else}Новая акция{/if}
+    </div>
+    <a href="?module=offer" class="rc-float-right">К списку акций</a>
+</div>
+{if isset ($offer.info.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="time">Время действия</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="condition">Условия действия</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="profit">Скидки</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="shops">Точки</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="exceptions">Ограничения</li>
+            </ul>
+        </div>
+    </div>
+    <div class="rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white">
+        <div class="js-content js-tab-content" data-tab="main" data-type="offer" data-id="{$offer.info.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="time" data-type="offer" data-id="{$offer.info.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="condition" data-type="offer" data-id="{$offer.info.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="profit" data-type="offer" data-id="{$offer.info.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="shops" data-type="offer" data-id="{$offer.info.id|escape}"></div>
+        <div class="js-content js-tab-content" data-tab="exceptions" data-type="offer" data-id="{$offer.info.id|escape}"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/offer/OfferTabMain.html"}
+    </div>
+{/if}

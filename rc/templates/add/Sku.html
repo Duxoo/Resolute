@@ -1,0 +1,16 @@
+<tr class="js-dependent js-row" data-id="{if isset($s.id)}{$s.id|escape}{/if}">
+    <td hidden>
+        <input type="hidden" name="data[sku][{$key}][id]"  value="{$s.id}">
+    </td>
+    {include $app_path|cat:'/templates/td_fields.html' current_row=$s td_fields=$sku_fields row_name='[sku]['|cat:$key|cat:']'}
+    <td>
+        <div class="js-delete-dependent rc-float-right rc-pointer rc-fill-dark rc-icon20" data-type="sku">
+            {include $app_path|cat:'/img/svg/trash.svg'}
+        </div>
+        {if isset($s.id)}
+            <div class="js-edit-popup rc-float-right rc-pointer rc-fill-dark rc-icon20" data-type="sku" data-title="Состав артикула '{$s.name|escape}'">
+                {include $app_path|cat:'/img/svg/edit.svg'}
+            </div>
+        {/if}
+    </td>
+</tr>

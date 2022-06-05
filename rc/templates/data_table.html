@@ -1,0 +1,12 @@
+<table class="js-data-table display responsive nowrap"{if isset($action)} data-action="{$action|escape}{/if}">
+    <thead class="rc-background rc-bold rc-left">
+    <tr>
+        {foreach $fields as $field}
+            {if isset($field.viewed)}
+                <th><p>{$field.name|escape}</p></th>
+            {/if}
+        {/foreach}
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>

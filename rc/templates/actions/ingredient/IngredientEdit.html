@@ -1,0 +1,32 @@
+<div class="rc-content-block rc-content-block rc-mb20  rc-tb10-dp20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+    <div class="rc-fs24 rc-color-dark">
+        {if isset($ingredient.name)}
+            Ингредиент "{$ingredient.name|escape}"
+        {else}
+            Новый ингредиент
+        {/if}
+    </div>
+    <a href="?module=ingredient" class="rc-float-right">К списку ингредиентов</a>
+</div>
+{if isset ($ingredient.id)}
+    <div class="js-tab-block rc-content-block rc-content-block rc-mb20 rc-background-white rc-flex rc-flex-center rc-flex-justify-between">
+        <div class="rc-p5">
+            <ul class="rc-flex">
+                <li class="js-tab rc-tab rc-pointer" data-tab="main">Основное</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="categories">Категории</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="suppliers">Поставщики</li>
+                <li class="js-tab rc-tab rc-pointer" data-tab="supply">Поставки</li>
+            </ul>
+        </div>
+    </div>
+    <div class="js-content rc-content-block rc-mb20 rc-tb10-dp20 rc-background-white" data-type="ingredient" data-id="{$ingredient.id|escape}">
+        <div class="js-tab-content" data-tab="main"></div>
+        <div class="js-tab-content" data-tab="categories"></div>
+        <div class="js-tab-content" data-tab="suppliers"></div>
+        <div class="js-tab-content" data-tab="supply"></div>
+    </div>
+{else}
+    <div class="js-content rc-content-block rc-mb20 rc-p20 rc-background-white">
+        {include $app_path|cat:"/templates/actions/ingredient/IngredientTabMain.html"}
+    </div>
+{/if}

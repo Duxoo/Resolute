@@ -1,0 +1,23 @@
+<tr>
+    <td hidden>
+        <input type="hidden" name="data[offer][weekdays][{$key|escape}][offer_id]" value="{$offer.info.id|escape}">
+        <input type="hidden" name="data[offer][weekdays][{$key|escape}][day_id]" value="{$key|escape}">
+    </td>
+    <td>
+        <input type="checkbox"  id="days_{$key}" name="data[offer][weekdays][{$key|escape}][status]" value="1"{if !empty($offer.weekdays[$key]) && $offer.weekdays[$key]['status'] != 0} checked{/if}>
+        <label for="days_{$key|escape}">
+            {include $app_path|cat:'/templates/check.html'}
+        </label>
+    </td>
+    <td>
+        {$value|escape}
+    </td>
+    <td>
+        <input type="text" id="weekdays_start_{$key|escape}" class="js-timepicker" data-format="HH:mm" name="data[offer][weekdays][{$key|escape}][start_time]"
+               value="{if !empty($offer.weekdays[$key])}{$offer.weekdays[$key].start_time|escape}{else}00:00{/if}">
+    </td>
+    <td>
+        <input type="text" id="weekdays_end_{$key|escape}" class="js-timepicker" data-format="HH:mm" name="data[offer][weekdays][{$key|escape}][end_time]"
+               value="{if !empty($offer.weekdays[$key])}{$offer.weekdays[$key].end_time|escape}{else}23:45{/if}">
+    </td>
+</tr>
