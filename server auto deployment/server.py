@@ -5,11 +5,9 @@ import time
 import requests
 import sys
 
-# host = "45.132.18.115"
 host = sys.argv[1]
 port = 22
 username = "root"
-# password = "0FM79Gt1LC"
 password = sys.argv[2]
 server_id = sys.argv[3]
 domain = sys.argv[4]
