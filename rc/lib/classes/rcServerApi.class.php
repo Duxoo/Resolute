@@ -5,7 +5,6 @@ class rcServerApi {
     protected $APIKey;
 
     public function __construct() {
-        //$this->APIKey = "d67b7e3fef53b0914067f8d921fb86f0ed39b8a5f8e0d56f767e90c242b6f229";
         $this->APIKey = $this->setAPIToken();
     }
 
